@@ -4,7 +4,7 @@ import java.util.*;
 public class Day6 {
 
 	public static void main(String[] args) throws Exception {
-		File input = new File("../day6test.txt");
+		File input = new File("../day6.txt");
 		Scanner scan = new Scanner(input);
 		List<Integer> nums = new ArrayList<Integer>();
 		while(scan.hasNext())
@@ -12,13 +12,15 @@ public class Day6 {
 		scan.close();
 
 		System.out.println(nums);
-		Set<List<Integer>> lists = new HashSet<List<Integer>>();
-		while(lists.add(nums)) {
+		List<List<Integer>> lists = new ArrayList<List<Integer>>();
+		while(!lists.contains(nums)) {
+			lists.add(new ArrayList(nums));
 			iterate(nums);
 //			System.out.println(nums);
 		}
 		
 		System.out.println(lists.size());
+		System.out.println(lists.size()-lists.indexOf(nums));
 	}
 
 	public static void iterate(List<Integer> nums){
